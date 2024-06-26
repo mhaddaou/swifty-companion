@@ -1,17 +1,44 @@
-import { ActivityIndicator, Text, TextInput, View } from "react-native";
+import {
+  ActivityIndicator,
+  ImageBackground,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import Search from "./Search";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import getToken from "../utils/getToken";
 import DisplayData from "./DisplayData";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import Loading from "./Loading";
 
-const HomeScreen = ({ display }: { display: boolean }) => {
+function Profile() {
+  return (
+    <View>
+      <Text>profile</Text>
+    </View>
+  );
+}
+
+function Settings() {
+  return (
+    <View>
+      <Text>Settings</Text>
+    </View>
+  );
+}
+const HomeScreen = () => {
   const [token, setToken] = useState<string>();
   const [search, setSearch] = useState<string>();
   const [goToSearch, setGoToSearch] = useState<boolean>();
   const [isDisplay, setIsDisplay] = useState<boolean>();
   const [data, setData] = useState<AxiosResponse>();
+  const [isLoad, setIsLoad] = useState(false);
+
+  const stack = createStackNavigator();
 
   const getInfo = async () => {
     try {
@@ -27,7 +54,7 @@ const HomeScreen = ({ display }: { display: boolean }) => {
         setIsDisplay(true);
       }
       setGoToSearch(false);
-      setSearch('');
+      setSearch("");
     } catch (e: any) {
       console.log(e.message);
     }
@@ -48,16 +75,25 @@ const HomeScreen = ({ display }: { display: boolean }) => {
   }, [goToSearch]);
 
   return (
-    <View
-      className={` flex-1  ${display ? "block" : "hidden"} relative`}
-      style={{ paddingTop: insets.top }}
+    <ImageBackground
+      onLoad={() => setIsLoad(true)}
+      source={require("./../assets/background.png")}
+      resizeMode="cover"
+      className="w-full h-full"
     >
-      {isDisplay ? (
-        <DisplayData res={data} />
-      ) : (
-        <Search goToSearch={setGoToSearch} setKeywords={setSearch} />
-      )}
-    </View>
+      <View className="w-full h-full bg--700">
+        {isLoad ? (
+          <View
+            className={` flex-1 w-screen h-full  relative`}
+            style={{ paddingTop: insets.top }}
+          >
+            <Search setInput={setSearch} />
+          </View>
+        ) : (
+          <Loading />
+        )}
+      </View>
+    </ImageBackground>
   );
 };
 

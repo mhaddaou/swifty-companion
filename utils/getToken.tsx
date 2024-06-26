@@ -1,4 +1,5 @@
 import axios from "axios"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const getToken = async () =>{
     
@@ -7,8 +8,8 @@ const getToken = async () =>{
         client_id: "u-s4t2ud-e1309259b626a6762d007dbdfe04fe70c05d5dc28be1bcc0706ecf9f48380657",
         client_secret: "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",
     })
-    
 
+    await AsyncStorage.setItem('token', res.data.access_token);
     return await res.data.access_token;
     
 }
