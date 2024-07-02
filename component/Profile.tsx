@@ -59,6 +59,16 @@ export default function Profile({props} : any){
               <Image source={require('../assets/icon-back.png')} />
               <Text className="text-base font-semibold text-[#471AA0]">Back</Text>
             </Pressable>
+            <View className="w- flex flex-row  justify-center">
+              <View className="w-16 h-16 bg--400 rounded-full border-[3px] border-green-300">
+              <Image
+              className="w-full h-full rounded-full"
+        source={{
+          uri: data?.data.image.link
+        }}
+      />
+              </View>
+            </View>
             
           </View>
 

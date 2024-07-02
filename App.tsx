@@ -1,11 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Skeleton } from '@rneui/themed';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StatusBar } from "expo-status-bar";
+import { styled } from "nativewind";
+import { Profiler, useState } from "react";
+import { ActivityIndicator, Text, View, ImageBackground } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import HomeScreen from './component/HomeScreen';
-import Profile from './component/Profile';
+import {
+  NavigationContainer,
+} from '@react-navigation/native';
+import Profile from "./component/Profile";
+import HomeScreen from "./component/HomeScreen";
 
 export type RootStackParams = {
   Home : undefined;
@@ -14,9 +17,9 @@ export type RootStackParams = {
 
 export default function App() {
   const stack = createStackNavigator<RootStackParams>();
-
+  
   return (
-    <SafeAreaProvider className="flex-1 bg-red-400 ">
+    <SafeAreaProvider className="flex-1  ">
       <NavigationContainer >
         <StatusBar style="light" />
         <stack.Navigator initialRouteName="Home">
@@ -27,7 +30,5 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
-
-
 
 // exp://ui8xpze-anonymous-8081.exp.direct
