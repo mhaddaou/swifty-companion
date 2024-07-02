@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "swifty-company",
-    "slug": "swifty-company",
+    "name": "swifty-companion",
+    "slug": "swifty-companion",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
