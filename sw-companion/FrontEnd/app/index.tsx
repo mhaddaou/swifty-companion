@@ -1,63 +1,43 @@
 import { Link } from 'expo-router';
-import { StyleSheet, Text, View,Image,ImageBackground } from "react-native";
+import { StyleSheet, Text, View,Image,ImageBackground, TouchableOpacity } from "react-native";
 import { Tabs } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 export default function Page() {
   // <ImageBackground source={image} resizeMode="cover" style=
   const [loading, setLoading] = useState(false);
   return (
-   <ImageBackground source={require('./../assets/images/background.png')} onLoadStart={() => setLoading(true)} onLoad={() => setLoading(false)} style={styles.container} >
-    <View style={styles.space}>
-    <View className=''>
-      <Image style={styles.img}  source={require('./../assets/icons/logo.png')} alt='icon' height={100} width={50}/>
+   <ImageBackground source={require('./../assets/images/background.png')} onLoadStart={() => setLoading(true)} onLoad={() => setLoading(false)}  className='flex-1' >
+    <SafeAreaView className='flex-1 flex flex-col justify-between'>
+    <View className='w-full h-1/2 '>
+    <Text className='text-5xl font-extrabold py-8 w-[80%] mx-auto italic'>
+      Welcome To Swifty-Companion
+    </Text>
+
+
     </View>
-    <View style={{width: '100%', backgroundColor: 'red'}}>
-      <Link style={styles.btn} href='/auth'>go</Link>
+    <View className='w-full h-1/2'>
+        <TouchableOpacity className='w-[80%] mx-auto  text-center bg-red-400 rounded-md'>
+      <LinearGradient colors={["red", "blue", "yellow"]} className='w-full py-3' >
+          <Text className='text-center '>click</Text>
+      </LinearGradient>
+        </TouchableOpacity>
+      
     </View>
-    </View>
+
+    </SafeAreaView>
+    
+    
 
    </ImageBackground>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 25,
-  },
-  img:{
-    paddingHorizontal: 50,
-    
-    
-
-  },
-  txt:{
-    
-  textShadowOffset: {width: 10, height: 10},
-  textShadowRadius: 10,
-  textShadowColor: "blue",
-
-
-  }
-
-  ,space:{
-    height: '55%',
-    display: 'flex',
-    flexDirection : 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  btn:{
-    width: '70%',
-    backgroundColor: 'blue',
-  }
- 
-});
 
 
 
-// exp://iwq5tqe-anonymous-8081.exp.direct
+
+// exp://bboeuoc-anonymous-8081.exp.direct
